@@ -13,12 +13,7 @@ function ChatRoomsList(props) {
 
   const roomsList = roomStore.rooms.map((room) => {
     return (
-      <ChatRoomitem
-        room={room}
-        key={room.id}
-        deleteRoom={props.deleteRoom}
-        updateRoom={props.updateRoom}
-      />
+      <ChatRoomitem room={room} key={room.id} updateRoom={props.updateRoom} />
     );
   });
   return (
@@ -26,11 +21,7 @@ function ChatRoomsList(props) {
       <button className="btn">
         <i className="fa fa-plus"></i>
         <span onClick={openModal}>New room</span>
-        <CreateRoomModal
-          isOpen={isOpen}
-          closeModal={closeModal}
-          createRoom={createRoom}
-        />
+        <CreateRoomModal isOpen={isOpen} closeModal={closeModal} />
       </button>
       <center>
         <div className="chatlist__heading">

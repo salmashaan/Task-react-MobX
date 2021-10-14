@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import roomStore from "../roomStore";
 import MessageItem from "./MessageItem";
 
 function ChatRoom(props) {
   const roomSlug = useParams().roomSlug;
-  const room = props.rooms.find((room) => room.slug === roomSlug);
+  const room = roomStore.rooms.find((room) => room.slug === roomSlug);
   const messagesList = room.messages.map((msg) => {
     return <MessageItem msg={msg.msg} />;
   });

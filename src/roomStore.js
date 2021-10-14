@@ -1,16 +1,20 @@
-import { observable, action, makeObservable } from "mobx";
+import { observable, action, makeObservable, makeAutoObservable } from "mobx";
 import axios from "axios";
 
 class RoomStore {
   rooms = [];
 
+  //   constructor() {
+  //     makeObservable(this, {
+  //       rooms: observable,
+  //       fetchRooms: action,
+  //       createRooms: action,
+  //       deleteRooms: action,
+  //     });
+  //   }
+
   constructor() {
-    makeObservable(this, {
-      rooms: observable,
-      fetchRooms: action,
-      createRooms: action,
-      deleteRooms: action,
-    });
+    makeAutoObservable(this);
   }
 
   fetchRooms = async () => {
@@ -38,11 +42,10 @@ class RoomStore {
 
   deleteRoom = async (id) => {
     try {
-      const response = await axios.delete(
+      await axios.delete(
         `https://coded-task-axios-be.herokuapp.com/rooms/${id}`
       );
       this.rooms = this.rooms.filter((room) => room.id !== id);
-      setRooms(tempRooms);
     } catch (error) {
       console.log(error);
     }
@@ -50,4 +53,7 @@ class RoomStore {
 }
 
 const roomStore = new RoomStore();
+roomStore.fetchRooms();
+//this instead of in app to fetch my rooms as soon as I open the app (runs only once)
+
 export default roomStore;
