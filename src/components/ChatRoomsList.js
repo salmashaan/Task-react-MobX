@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ChatRoomitem from "./ChatRoomitem";
 import CreateRoomModal from "./CreateRoomModal";
-import taskStore from "../taskStore";
+import roomStore from "../roomStore";
 import { observer } from "mobx-react";
 
 function ChatRoomsList(props) {

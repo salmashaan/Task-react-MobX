@@ -1,6 +1,6 @@
 import { Modal, Button, InputGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
-import taskStore from "../taskStore";
+import roomStore from "../roomStore";
 import { observer } from "mobx-react";
 import roomStore from "../roomStore";
 
