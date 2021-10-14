@@ -10,33 +10,6 @@ import roomStore from "./roomStore";
 function App() {
   const [rooms, setRooms] = useState([]);
 
-  // const deleteRoom = async (id) => {
-  //   try {
-  //     const response = await axios.delete(
-  //       `https://coded-task-axios-be.herokuapp.com/rooms/${id}`
-  //     );
-  //     let tempRooms = rooms.filter((room) => room.id !== id);
-  //     setRooms(tempRooms);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  const updateRoom = async (updatedRoom) => {
-    try {
-      const response = await axios.put(
-        `https://coded-task-axios-be.herokuapp.com/rooms/${updatedRoom.id}`,
-        updatedRoom
-      );
-      let tempRooms = rooms.map((room) =>
-        room.id === updatedRoom.id ? response.data : room
-      );
-      setRooms(tempRooms);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const createMsg = async (roomId, msg) => {
     try {
       const response = await axios.post(
@@ -63,7 +36,7 @@ function App() {
           </Route>
           <Route exact path="/">
             <center>
-              <ChatRoomsList rooms={rooms} updateRoom={updateRoom} />
+              <ChatRoomsList rooms={rooms} />
             </center>
           </Route>
         </Switch>

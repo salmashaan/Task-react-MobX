@@ -40,6 +40,20 @@ class RoomStore {
     }
   };
 
+  updateRoom = async (updatedRoom) => {
+    try {
+      const response = await axios.put(
+        `https://coded-task-axios-be.herokuapp.com/rooms/${updatedRoom.id}`,
+        updatedRoom
+      );
+      this.rooms = this.rooms.map((room) =>
+        room.id === updatedRoom.id ? response.data : room
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   deleteRoom = async (id) => {
     try {
       await axios.delete(

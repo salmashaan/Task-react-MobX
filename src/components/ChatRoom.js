@@ -1,3 +1,4 @@
+import { observer } from "mobx-react";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import roomStore from "../roomStore";
@@ -53,4 +54,4 @@ function ChatRoom(props) {
     </div>
   );
 }
-export default ChatRoom;
+export default observer(ChatRoom);
