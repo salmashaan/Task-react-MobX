@@ -5,48 +5,49 @@ import ChatRoom from "./components/ChatRoom";
 import ChatRoomsList from "./components/ChatRoomsList";
 import { Route, Switch } from "react-router";
 import axios from "axios";
+import roomStore from "./roomStore";
 
 function App() {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    fetchRooms();
+    roomStore.fetchRooms();
   }, []);
 
-  const fetchRooms = async () => {
-    try {
-      const response = await axios.get(
-        "https://coded-task-axios-be.herokuapp.com/rooms"
-      );
-      setRooms(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchRooms = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://coded-task-axios-be.herokuapp.com/rooms"
+  //     );
+  //     setRooms(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const createRoom = async (newRoom) => {
-    try {
-      const response = await axios.post(
-        "https://coded-task-axios-be.herokuapp.com/rooms",
-        newRoom
-      );
-      setRooms([...rooms, response.data]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const createRoom = async (newRoom) => {
+  //   try {
+  //     const response = await axios.post(
+  //       "https://coded-task-axios-be.herokuapp.com/rooms",
+  //       newRoom
+  //     );
+  //     setRooms([...rooms, response.data]);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const deleteRoom = async (id) => {
-    try {
-      const response = await axios.delete(
-        `https://coded-task-axios-be.herokuapp.com/rooms/${id}`
-      );
-      let tempRooms = rooms.filter((room) => room.id !== id);
-      setRooms(tempRooms);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const deleteRoom = async (id) => {
+  //   try {
+  //     const response = await axios.delete(
+  //       `https://coded-task-axios-be.herokuapp.com/rooms/${id}`
+  //     );
+  //     let tempRooms = rooms.filter((room) => room.id !== id);
+  //     setRooms(tempRooms);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const updateRoom = async (updatedRoom) => {
     try {
@@ -91,8 +92,8 @@ function App() {
             <center>
               <ChatRoomsList
                 rooms={rooms}
-                createRoom={createRoom}
-                deleteRoom={deleteRoom}
+                createRoom={this.createRoom}
+                deleteRoom={this.deleteRoom}
                 updateRoom={updateRoom}
               />
             </center>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ChatRoomitem from "./ChatRoomitem";
 import CreateRoomModal from "./CreateRoomModal";
+import taskStore from "../taskStore";
+import { observer } from "mobx-react";
 
 function ChatRoomsList(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +11,7 @@ function ChatRoomsList(props) {
 
   const openModal = () => setIsOpen(true);
 
-  const roomsList = props.rooms.map((room) => {
+  const roomsList = roomStore.rooms.map((room) => {
     return (
       <ChatRoomitem
         room={room}
@@ -27,7 +29,7 @@ function ChatRoomsList(props) {
         <CreateRoomModal
           isOpen={isOpen}
           closeModal={closeModal}
-          createRoom={props.createRoom}
+          createRoom={createRoom}
         />
       </button>
       <center>
@@ -40,4 +42,4 @@ function ChatRoomsList(props) {
     </div>
   );
 }
-export default ChatRoomsList;
+export default observer(ChatRoomsList);
