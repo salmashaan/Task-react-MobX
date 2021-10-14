@@ -15,7 +15,7 @@ function ChatRoom(props) {
     setMsg({ ...msg, [event.target.name]: event.target.value });
   };
   const handleSubmit = () => {
-    props.createMsg(room.id, msg);
+    roomStore.createMsg(room.id, msg);
   };
 
   return (

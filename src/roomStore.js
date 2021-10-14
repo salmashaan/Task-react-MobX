@@ -64,6 +64,19 @@ class RoomStore {
       console.log(error);
     }
   };
+
+  createMsg = async (roomId, msg) => {
+    try {
+      const response = await axios.post(
+        `https://coded-task-axios-be.herokuapp.com/rooms/msg/${roomId}`,
+        msg
+      );
+      const room = this.rooms.find((room) => room.id === roomId);
+      room.messages.push(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 const roomStore = new RoomStore();

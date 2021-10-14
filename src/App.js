@@ -8,35 +8,16 @@ import axios from "axios";
 import roomStore from "./roomStore";
 
 function App() {
-  const [rooms, setRooms] = useState([]);
-
-  const createMsg = async (roomId, msg) => {
-    try {
-      const response = await axios.post(
-        `https://coded-task-axios-be.herokuapp.com/rooms/msg/${roomId}`,
-        msg
-      );
-      let tempRooms = rooms.map((room) =>
-        room.id === roomId
-          ? { ...room, messages: [...room.messages, response.data] }
-          : room
-      );
-      console.log(tempRooms);
-      setRooms(tempRooms);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <div className="__main">
       <div className="main__chatbody">
         <Switch>
           <Route path="/room/:roomSlug">
-            <ChatRoom rooms={rooms} createMsg={createMsg} />
+            <ChatRoom />
           </Route>
           <Route exact path="/">
             <center>
-              <ChatRoomsList rooms={rooms} />
+              <ChatRoomsList />
             </center>
           </Route>
         </Switch>
